@@ -1,0 +1,43 @@
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #fddcd3;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 2px 0 6px #ddd;
+}
+
+.sidebar h2 {
+  font-size: 1.4rem;
+  color: #d77b5b;
+  margin-bottom: 16px;
+}
+
+.sidebar button {
+  background: #fff;
+  border: 1px solid #d77b5b;
+  color: #d77b5b;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar button:hover {
+  background: #d77b5b;
+  color: white;
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  padding: 32px;
+  background: #fff9f8;
+  overflow-y: auto;
+}
