@@ -69,8 +69,8 @@ export default function Navbar() {
             ) : userRole === 'admin' ? (
               <>
                 <Link to="/dashboard" className="dropdown-link" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                <Link to="/manage-users" className="dropdown-link" onClick={() => setMenuOpen(false)}>Manage Users</Link>
-                <Link to="/manage-pets" className="dropdown-link" onClick={() => setMenuOpen(false)}>Manage Pets</Link>
+                {/* <Link to="/manage-users" className="dropdown-link" onClick={() => setMenuOpen(false)}>Manage Users</Link> */}
+                {/* <Link to="/manage-pets" className="dropdown-link" onClick={() => setMenuOpen(false)}>Manage Pets</Link> */}
                 <button className="dropdown-link logout" onClick={handleLogout}>Logout</button>
               </>
             ) : (

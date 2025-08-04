@@ -7,6 +7,10 @@ import Signup from "./components/Signup";
 import Profile from "./components/Profile";
 import AdminAddPet from "./components/AdminAddPet";
 import AdminDashboard from "./components/AdminDashboard";
+import AdminManagePets from './components/AdminManagePets';
+import AdoptPage from "./components/AdoptPage";
+
+
 
 function AppContent() {
   const location = useLocation();
@@ -18,7 +22,8 @@ function AppContent() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/adopt" element={<div style={{ padding: 48 }}>Adopt a Pet Page (coming soon)</div>} />
+        {/* <Route path="/adopt" element={<div style={{ padding: 48 }}>Adopt a Pet Page (coming soon)</div>} /> */}
+        <Route path="/adopt" element={<AdoptPage />} />
         <Route path="/donate" element={<div style={{ padding: 48 }}>Donate Page (coming soon)</div>} />
         <Route path="/contact" element={<div style={{ padding: 48 }}>Contact Page (coming soon)</div>} />
         <Route path="/login" element={<Login />} />
@@ -26,6 +31,9 @@ function AppContent() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin/add-pet" element={<AdminAddPet />} />
         <Route path="/dashboard" element={<AdminDashboard />} />
+        <Route path="/dashboard/manage-pets" element={<AdminManagePets />} />
+        {/* <Route path="/adopt" element={<AdoptPage />} /> */}
+
       </Routes>
     </>
   );

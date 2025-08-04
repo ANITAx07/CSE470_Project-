@@ -43,3 +43,33 @@ router.get('/', async (req, res) => {
 });
 
 module.exports = router;
+
+
+// GET all pets (for admin management)
+router.get('/admin/all', async (req, res) => {
+  try {
+    const pets = await Pet.find().sort({ createdAt: -1 }); // latest first
+    res.json(pets);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch pets' });
+  }
+});
+// Delete a pet
+router.delete('/:id', async (req, res) => {
+  try {
+    await Pet.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Pet deleted' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Update a pet
+router.put('/:id', async (req, res) => {
+  try {
+    const updatedPet = await Pet.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(updatedPet);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});

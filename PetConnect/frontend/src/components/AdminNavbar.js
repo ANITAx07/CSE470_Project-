@@ -21,9 +21,9 @@ export default function AdminNavbar() {
 
       {/* Admin Links */}
       <div className="navbar-links">
-        <Link to="/dashboard" className="navlink">Dashboard</Link>
-        <Link to="/manage-pets" className="navlink">Manage Pets</Link>
-        <Link to="/manage-users" className="navlink">Users</Link>
+        {/* <Link to="/dashboard" className="navlink">Dashboard</Link> */}
+        {/* <Link to="/manage-pets" className="navlink">Manage Pets</Link> */}
+        {/* <Link to="/manage-users" className="navlink">Users</Link> */}
         <button onClick={handleLogout} className="account-btn">Logout</button>
       </div>
     </nav>

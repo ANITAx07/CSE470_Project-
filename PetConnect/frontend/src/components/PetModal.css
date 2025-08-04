@@ -1,0 +1,136 @@
+/* PetModal.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(101, 26, 7, 0.653);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+  overflow-y: auto;
+}
+
+
+.pet-modal {
+  background: #321303;
+    color: #d0c3bf;
+  padding: 32px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 0.3s ease;
+  color: #d0c3bf;
+    display: flex;
+    flex-direction: column;
+}
+
+.pet-modal h2 {
+  color: #000000; /* Light Salmon */
+  font-size: 1.9rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+.modal-content {
+  flex: 1;
+    padding: 16px;
+    border-radius: 12px;
+  overflow-y: auto;
+  color: #000000;
+  max-height: 600px; /* Limit height for scrolling */
+
+}
+
+.pet-modal img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e3b7a6;
+    transition: transform 0.2s ease;
+
+
+}
+
+.pet-modal p {
+  font-size: 1.05rem;
+  color: #352116;
+  margin: 6px 0;
+    line-height: 1.6;
+    text-align: justify;
+
+
+}
+
+.pet-modal .btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.pet-modal button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s ease;
+  color: #fff;
+  background: #d77b5b;
+
+
+}
+
+.adopt-btn {
+  background: #d77b5b;
+  color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 22px;
+}
+
+.adopt-btn:hover {
+  background: #b45a3c;
+}
+
+.close-btn {
+    position: relative;
+    
+  background: #f1f1f1;
+  color: #444;
+
+}
+
+.close-btn:hover {
+  background: #ddd;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+
+  }
+  }
