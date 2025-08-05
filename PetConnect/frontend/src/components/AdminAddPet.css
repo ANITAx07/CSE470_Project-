@@ -41,3 +41,15 @@
 .pet-form button:hover {
   background: #a75331;
 }
+
+.age-inputs {
+  display: flex;
+  gap: 12px;
+}
+
+.age-inputs input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}

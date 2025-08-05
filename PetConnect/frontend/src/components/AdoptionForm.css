@@ -1,0 +1,73 @@
+/* frontend/src/components/AdoptionForm.css */
+.adoption-form-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  background-color: #fef6f4;
+  min-height: 100vh;
+}
+
+.adoption-form {
+  background: #ffece7;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', sans-serif;
+  color: #352116;
+}
+
+.adoption-form h2 {
+  text-align: center;
+  color: #d77b5b;
+  margin-bottom: 24px;
+}
+
+.adoption-form input,
+.adoption-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 2px solid #d77b5b;
+  border-radius: 10px;
+  background-color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #352116;
+  box-shadow: 0 2px 6px rgba(215, 123, 91, 0.05);
+}
+
+.adoption-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.adoption-form .checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  color: #5c4433;
+}
+
+.adoption-form .checkbox input {
+  margin-right: 8px;
+}
+
+.adoption-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #d77b5b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.adoption-form button:hover {
+  background-color: #b65e43;
+}

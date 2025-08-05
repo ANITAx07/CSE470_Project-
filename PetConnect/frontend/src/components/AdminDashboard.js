@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import AdminNavbar from './AdminNavbar';
 import AdminAddPet from './AdminAddPet';
 import AdminManagePets from './AdminManagePets'; // ✅ Import the manage pets component
+import AdminAdoptionRequests from './AdminAdoptionRequests';
+import AdminAdoptionHistory from './AdminAdoptionHistory';
+// ✅ Import the adoption history component
 import './AdminDashboard.css'; // Custom styles
 
 export default function AdminDashboard() {
@@ -22,6 +25,8 @@ export default function AdminDashboard() {
           <h2>Admin Panel</h2>
           <button onClick={() => setActiveTab('add')}>➕ Add Pet</button>
           <button onClick={() => setActiveTab('manage')}>📝 Manage Pets</button>
+          <button onClick={() => setActiveTab('requests')}>📋 Requests</button>
+          <button onClick={() => setActiveTab('history')}>📜 History</button>
           <button onClick={() => navigate('/')}>🏠 Home</button>
         </aside>
 
@@ -29,8 +34,14 @@ export default function AdminDashboard() {
         <main className="dashboard-content">
           {activeTab === 'add' && <AdminAddPet />}
           {activeTab === 'manage' && <AdminManagePets />}
+          {activeTab === 'requests' && <AdminAdoptionRequests />}
+          {activeTab === 'history' && <AdminAdoptionHistory />}
+          {activeTab === 'home' && <h2>Welcome to the Admin Dashboard</h2>}
         </main>
       </div>
     </div>
   );
 }
+
+
+

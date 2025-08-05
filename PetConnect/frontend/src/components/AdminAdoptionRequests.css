@@ -1,0 +1,67 @@
+.admin-requests-container {
+  padding: 40px;
+  background-color: #fff6f4;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: #352116;
+}
+
+.admin-requests-container h2 {
+  color: #d77b5b;
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.request-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(215, 123, 91, 0.1);
+  overflow: hidden;
+}
+
+.request-table th,
+.request-table td {
+  padding: 16px;
+  text-align: left;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f0e0db;
+  vertical-align: middle;
+}
+
+.request-table th {
+  background-color: #f9e8e3;
+  color: #b95c3b;
+  font-weight: 600;
+}
+
+.request-table td img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.request-table button {
+  background-color: #d77b5b;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  margin: 2px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.request-table button:hover {
+  background-color: #b75e42;
+}
+
+.request-table td span {
+  color: #999;
+  font-style: italic;
+}

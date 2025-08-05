@@ -51,6 +51,8 @@ export default function Navbar() {
         <Link to="/adopt" className="navlink">Adopt a Pet</Link>
         <Link to="/donate" className="navlink">Donate</Link>
         <Link to="/contact" className="navlink">Contact</Link>
+        {/* <Link to="/my-requests">My Requests</Link> */}
+
       </div>
 
       {/* Account Dropdown */}
@@ -78,6 +80,7 @@ export default function Navbar() {
                 <Link to="/profile" className="dropdown-link" onClick={() => setMenuOpen(false)}>My Profile</Link>
                 <Link to="/my-adoptions" className="dropdown-link" onClick={() => setMenuOpen(false)}>My Adoptions</Link>
                 <Link to="/my-donations" className="dropdown-link" onClick={() => setMenuOpen(false)}>My Donations</Link>
+                <Link to="/favorites" className="dropdown-link" onClick={() => setMenuOpen(false)}>Favorites</Link>
                 <button className="dropdown-link" onClick={handleLogout}>Logout</button>
               </>
             )}

@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 
+// Initialize Express app
 const app = express();
 
 // ===== Middlewares =====
@@ -23,9 +24,15 @@ mongoose
 // ===== Routes =====
 const petRoutes = require('./routes/petRoutes');
 const authRoutes = require('./routes/auth');
+const adoptionRoutes = require('./routes/adoptionRoutes'); // Make sure this line is uncommented correctly
+const userRoutes = require('./routes/userRoutes');
+
 // Use routes
 app.use('/api/pets', petRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/adoptions', adoptionRoutes); // This should be enabled
+app.use('/api/users', userRoutes);
+
 
 // ===== Test Route =====
 app.get('/', (req, res) => {
@@ -37,4 +44,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
 // Export app for testing
-
+module.exports = app;
