@@ -29,7 +29,7 @@ export default function FavoritePage() {
     try {
       const userId = localStorage.getItem("userId");
       await axios.put(`http://localhost:5000/api/users/remove-favorite/${userId}`, {
-        petId,
+        petId, // Sending petId to the backend
       });
       setFavorites(favorites.filter((pet) => pet._id !== petId)); // Remove pet from UI
       alert("Pet removed from favorites.");

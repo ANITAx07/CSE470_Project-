@@ -85,6 +85,8 @@ router.get('/admin/adoption-requests', async (req, res) => {
 // backend/routes/adoptionRoutes.js
 
 // backend/routes/adoptionRoutes.js
+const Notification = require('../models/Notification');
+
 router.put('/admin/adoption-requests/:id/status', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
@@ -95,6 +97,18 @@ router.put('/admin/adoption-requests/:id/status', async (req, res) => {
 
         request.status = status; // Update the status
         await request.save(); // Save the updated request
+
+        // Create notification for user on approval or rejection
+        if (status === 'approved' || status === 'rejected') {
+            const message = `Your adoption request for pet ${request.petId} has been ${status}.`;
+            const notification = new Notification({
+                user: request.userId,
+                type: `Adoption ${status.charAt(0).toUpperCase() + status.slice(1)}`,
+                message,
+                read: false
+            });
+            await notification.save();
+        }
 
         res.status(200).json({ message: 'Request status updated', request });
     } catch (err) {

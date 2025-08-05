@@ -37,7 +37,9 @@ export default function AdoptPage() {
     if (userId) {
       try {
         const res = await axios.get(`http://localhost:5000/api/users/${userId}/favorites`);
-        setFavorites(res.data);
+        // Map pet objects to array of pet IDs
+        const favoritePetIds = res.data.map(pet => pet._id);
+        setFavorites(favoritePetIds);
       } catch (err) {
         console.error('Error fetching favorites:', err);
       }
@@ -73,6 +75,11 @@ export default function AdoptPage() {
 
   // 👉 Add pet to favorites
   const handleFavorite = async (petId) => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      alert("❌ Please log in to add pets to favorites");
+      return;
+    }
     // Add pet to favorites locally first
     setFavorites((prevFavorites) => {
       if (prevFavorites.includes(petId)) {
@@ -82,19 +89,13 @@ export default function AdoptPage() {
       }
     });
 
-    // Send the petId to the backend to add it to favorites
-    const userId = localStorage.getItem("userId");
-    if (!userId) {
-      alert("❌ Please log in to add pets to favorites");
-      return;
-    }
-
     try {
       const res = await axios.put(
         `http://localhost:5000/api/users/add-favorite/${userId}`,
         { petId }
       );
       alert("❤️ Pet added to favorites!");
+      fetchFavorites(); // Re-fetch updated favorites from backend
     } catch (err) {
       console.error("Error adding to favorites:", err.response || err.message);
       alert("❌ Failed to add to favorites");
@@ -150,13 +151,14 @@ export default function AdoptPage() {
                 {pet.name}
                 <FaHeart
                   style={{
-                    color: favorites.includes(pet._id) ? 'red' : 'gray', // Change color based on favorite status
-                    cursor: 'pointer',
+                    color: favorites.includes(pet._id) ? 'red' : 'gray', // Show red heart if favorited
+                    cursor: favorites.includes(pet._id) ? 'default' : 'pointer', // Only clickable if not favorited
                     marginLeft: '8px',
                   }}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent triggering pet box click
                     if (favorites.includes(pet._id)) {
-                      handleRemoveFavorite(pet._id);  // Remove from favorites
+                      alert("Pet is already in favorite."); // Show alert if already favorited
                     } else {
                       handleFavorite(pet._id);  // Add to favorites
                     }
