@@ -6,12 +6,18 @@ const {
   signup,
   login,
   getProfile,
-  updateProfile
+  updateProfile,
+  forgotPassword,
+  resetPassword
 } = require('../controllers/authController');
 
 // Signup and login
 router.post('/signup', signup);
 router.post('/login', login);
+
+// Forgot password route only (remove reset-password route)
+router.post('/forgot-password', forgotPassword);
+// router.post('/reset-password/:token', resetPassword);
 
 // Profile routes
 router.get('/profile', getProfile);

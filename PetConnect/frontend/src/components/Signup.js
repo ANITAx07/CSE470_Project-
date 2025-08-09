@@ -18,10 +18,16 @@ export default function Signup() {
 
       alert(res.data.message || 'Signup successful!');
 
-      // ✅ Store user ID in localStorage
-      localStorage.setItem('userId', res.data.user._id);
+      // Store user info in localStorage (like login)
+      const user = res.data.user;
+      localStorage.setItem('userId', user._id);
+      localStorage.setItem('userRole', user.role || 'user');
+      localStorage.setItem('userName', user.name);
+      if (user.avatar) {
+        localStorage.setItem('userAvatar', 'http://localhost:5000' + user.avatar);
+      }
 
-      // ✅ Redirect to profile page
+      // Redirect to profile page
       window.location.href = '/profile';
 
     } catch (err) {

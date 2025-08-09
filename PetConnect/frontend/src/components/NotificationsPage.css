@@ -1,0 +1,37 @@
+.notifications-page {
+  padding: 20px;
+}
+
+.notifications-list {
+  list-style: none;
+  padding: 0;
+}
+
+.notification-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.notification-item.unread {
+  font-weight: bold;
+  background-color: #f0f8ff;
+}
+
+.notification-item.read {
+  color: #888;
+}
+
+button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: #f08080;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #e06b6b;
+}

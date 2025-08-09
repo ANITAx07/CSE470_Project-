@@ -21,6 +21,12 @@ export default function Login() {
         return;
       }
 
+      // Save token
+      const { token } = res.data;
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+
       // ✅ Save user info
       localStorage.setItem('userId', user.userId);
       localStorage.setItem('userRole', user.role);
@@ -61,6 +67,10 @@ export default function Login() {
           required
           onChange={e => setPassword(e.target.value)}
         />
+
+        <div className="forgot-password-link" style={{ marginBottom: '10px' }}>
+          <a href="/forgot-password">Forgot Password?</a>
+        </div>
 
         <button type="submit">Login</button>
         <div className="login-link">

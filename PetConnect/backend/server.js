@@ -25,6 +25,7 @@ mongoose
 const petRoutes = require('./routes/petRoutes');
 const authRoutes = require('./routes/auth');
 const adoptionRoutes = require('./routes/adoptionRoutes'); // Make sure this line is uncommented correctly
+const postRoutes = require('./routes/postRoutes');
 
 const userRoutes = require('./routes/userRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
@@ -33,6 +34,7 @@ const notificationRoutes = require('./routes/notificationRoutes');
 app.use('/api/pets', petRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/adoptions', adoptionRoutes); // This should be enabled
+app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/notifications', notificationRoutes);
 

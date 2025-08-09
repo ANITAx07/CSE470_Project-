@@ -1,0 +1,21 @@
+.moments-feed-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #fff0eb;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 140, 105, 0.2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.moments-feed-container h2 {
+  color: #d46a3e;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.moments-feed-container p {
+  text-align: center;
+  color: #6b4c3b;
+  font-size: 1.1rem;
+}

@@ -5,7 +5,8 @@ const notificationSchema = new mongoose.Schema({
   type: String, // e.g., "Adoption Approved"
   message: String,
   read: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  postId: { type: mongoose.Schema.Types.ObjectId, ref: 'Post', required: false } // Added postId reference
 });
 
 module.exports = mongoose.model('Notification', notificationSchema);

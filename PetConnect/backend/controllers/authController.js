@@ -1,6 +1,9 @@
 // backend/controllers/authController.js
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+// const nodemailer = require('nodemailer');
 
 // ===== Signup =====
 const signup = async (req, res) => {
@@ -50,8 +53,16 @@ const login = async (req, res) => {
     console.log('✅ Password match result:', match);
     if (!match) return res.status(401).json({ error: 'Invalid credentials' });
 
+    // Generate JWT token
+    const token = jwt.sign(
+      { userId: user._id, role: user.role, name: user.name },
+      process.env.JWT_SECRET, // use env variable for secret
+      { expiresIn: '1d' }
+    );
+
     res.status(200).json({
       message: 'Login successful',
+      token,
       user: {
         userId: user._id,
         name: user.name,
@@ -61,8 +72,39 @@ const login = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ error: 'Login failed', details: error.message });
   }
+};
+
+// ===== Forgot Password =====
+const forgotPassword = async (req, res) => {
+  const { email, captcha, newPassword } = req.body;
+  try {
+    // Simple captcha validation (for example, captcha must be '1234')
+    if (captcha !== '1234') {
+      return res.status(400).json({ error: 'Invalid captcha' });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    // Hash new password and save
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+
+    await user.save();
+
+    res.json({ message: 'Password has been reset successfully' });
+  } catch (error) {
+    console.error('Forgot password error:', error);
+    res.status(500).json({ error: 'Failed to reset password' });
+  }
+};
+
+// ===== Reset Password =====
+const resetPassword = async (req, res) => {
+  res.status(404).json({ error: 'Not implemented' });
 };
 
 // ===== Get Profile =====
@@ -122,4 +164,6 @@ module.exports = {
   getProfile,
   updateProfile,
   isAdmin,
+  forgotPassword,
+  resetPassword,
 };
