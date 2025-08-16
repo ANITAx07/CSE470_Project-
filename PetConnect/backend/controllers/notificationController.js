@@ -4,7 +4,7 @@ exports.getUserNotifications = async (req, res) => {
   try {
     const userId = req.params.userId;
     console.log('Fetching notifications for user:', userId);
-    const notifications = await Notification.find({ user: userId }).sort({ createdAt: -1 });
+    const notifications = await Notification.find({ userId: userId }).sort({ createdAt: -1 });
     console.log('Notifications found:', notifications.length);
     res.status(200).json(notifications);
   } catch (err) {

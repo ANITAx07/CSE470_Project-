@@ -87,8 +87,8 @@ exports.likePost = async (req, res) => {
     if (post.user.toString() !== userId) {
       const liker = await User.findById(userId);
       const notification = new Notification({
-        user: post.user,
-        type: 'Like',
+        userId: post.user,
+        type: 'like',
         message: `${liker.name} liked your post.`,
         postId: post._id
       });
@@ -135,8 +135,8 @@ exports.addComment = async (req, res) => {
     if (post.user.toString() !== userId) {
       const commenter = await User.findById(userId);
       const notification = new Notification({
-        user: post.user,
-        type: 'Comment',
+        userId: post.user,
+        type: 'comment',
         message: `${commenter.name} commented on your post.`,
         postId: post._id
       });

@@ -1,12 +1,12 @@
+// PetConnect/frontend/src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute"; // ✅ new import
+import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ForgotPassword from "./components/ForgotPassword";
-// import ResetPassword from "./components/ResetPassword"; // Remove this import
 import Profile from "./components/Profile";
 import AdminAddPet from "./components/AdminAddPet";
 import AdminDashboard from "./components/AdminDashboard";
@@ -16,10 +16,12 @@ import AdoptionForm from "./components/AdoptionForm";
 import AdminAdoptionRequests from './components/AdminAdoptionRequests';
 import MyAdoptions from './components/MyAdoptions';
 import FavoritePage from './components/FavoritePage'; 
-import NotificationsPage from './components/NotificationsPage';  // Added import
-import MomentsFeed from './components/MomentsFeed'; // Added import
-import MyPosts from './components/MyPosts'; // Added import for MyPosts
-import PostPage from './components/PostPage'; // Added import for PostPage
+import NotificationsPage from './components/NotificationsPage';
+import MomentsFeed from './components/MomentsFeed';
+import MyPosts from './components/MyPosts';
+import PostPage from './components/PostPage';
+import DonateItem from './components/DonateItem';
+import MyDonations from './components/MyDonations';
 
 function AppContent() {
   const location = useLocation();
@@ -49,7 +51,9 @@ function AppContent() {
       <Route path="/dashboard/manage-pets" element={<ProtectedRoute><AdminManagePets /></ProtectedRoute>} />
       <Route path="/adopt/:petId/form" element={<ProtectedRoute><AdoptionForm /></ProtectedRoute>} />
       <Route path="/my-adoptions" element={<MyAdoptions />} />
-      <Route path="/my-posts" element={<ProtectedRoute><MyPosts /></ProtectedRoute>} /> {/* Added my-posts route */}
+      <Route path="/my-posts" element={<ProtectedRoute><MyPosts /></ProtectedRoute>} />
+      <Route path="/my-donations" element={<ProtectedRoute><MyDonations /></ProtectedRoute>} />
+      <Route path="/donate" element={<ProtectedRoute><DonateItem /></ProtectedRoute>} />
       <Route path="/dashboard/requests" element={<AdminAdoptionRequests />} />
       <Route path="/admin/adoption-requests" element={<ProtectedRoute><AdminAdoptionRequests /></ProtectedRoute>} />
       <Route path="/favorites" element={<ProtectedRoute><FavoritePage /></ProtectedRoute>} />

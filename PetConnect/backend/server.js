@@ -1,4 +1,3 @@
-// backend/server.js
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -24,22 +23,20 @@ mongoose
 // ===== Routes =====
 const petRoutes = require('./routes/petRoutes');
 const authRoutes = require('./routes/auth');
-const adoptionRoutes = require('./routes/adoptionRoutes'); // Make sure this line is uncommented correctly
+const adoptionRoutes = require('./routes/adoptionRoutes');
 const postRoutes = require('./routes/postRoutes');
-
+const donationRoutes = require('./routes/donationRoutes');
 const userRoutes = require('./routes/userRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 
 // Use routes
 app.use('/api/pets', petRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/adoptions', adoptionRoutes); // This should be enabled
+app.use('/api/adoptions', adoptionRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/donations', donationRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/notifications', notificationRoutes);
-
-
-
 
 // ===== Test Route =====
 app.get('/', (req, res) => {

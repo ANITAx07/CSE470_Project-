@@ -119,7 +119,7 @@ const getProfile = async (req, res) => {
   }
 };
 
-// ===== Update Profile =====
+// Update Profile 
 const updateProfile = async (req, res) => {
   try {
     const userId = req.body.userId;

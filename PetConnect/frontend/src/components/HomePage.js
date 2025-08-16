@@ -80,7 +80,7 @@ function HomePage() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
           <div style={{ display: "flex", gap: 18 }}>
-            <button style={adoptBtnStyle}>Adopt Now</button>
+            <button style={adoptBtnStyle}>Donate Now</button>
             <button style={learnBtnStyle} onClick={() => setShowPostForm(true)}>Post Moments ‪‪❤︎‬</button>
           </div>
 

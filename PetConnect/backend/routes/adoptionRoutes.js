@@ -1,10 +1,10 @@
 // backend/routes/adoptionRoutes.js
-
-// backend/routes/adoptionRoutes.js
 const express = require('express');
 const router = express.Router();
 const Adoption = require('../models/AdoptionRequest');
-
+const Notification = require('../models/Notification');
+const Pet = require('../models/Pet');
+const User = require('../models/User');
 
 // ✅ 1. Submit an adoption request
 router.post('/request', async (req, res) => {
@@ -35,6 +35,19 @@ router.post('/request', async (req, res) => {
     });
 
     await newRequest.save();
+    
+    // Notify admins about new adoption request
+    const pet = await Pet.findById(petId);
+    const adminUsers = await User.find({ role: 'admin' });
+    for (const admin of adminUsers) {
+      await Notification.create({
+        userId: admin._id,
+        message: `New adoption request for ${pet.name} from ${name}`,
+        type: 'adoption_request',
+        relatedId: newRequest._id
+      });
+    }
+
     res.status(201).json({
       message: 'Adoption request submitted',
       request: newRequest
@@ -85,7 +98,7 @@ router.get('/admin/adoption-requests', async (req, res) => {
 // backend/routes/adoptionRoutes.js
 
 // backend/routes/adoptionRoutes.js
-const Notification = require('../models/Notification');
+// const Notification = require('../models/Notification');
 
 router.put('/admin/adoption-requests/:id/status', async (req, res) => {
     const { id } = req.params;
@@ -100,12 +113,13 @@ router.put('/admin/adoption-requests/:id/status', async (req, res) => {
 
         // Create notification for user on approval or rejection
         if (status === 'approved' || status === 'rejected') {
-            const message = `Your adoption request for pet ${request.petId} has been ${status}.`;
+            const pet = await Pet.findById(request.petId);
+            const message = `Your adoption request for ${pet.name} has been ${status}.`;
             const notification = new Notification({
-                user: request.userId,
-                type: `Adoption ${status.charAt(0).toUpperCase() + status.slice(1)}`,
+                userId: request.userId,
+                type: `adoption_${status}`,
                 message,
-                read: false
+                relatedId: request._id
             });
             await notification.save();
         }

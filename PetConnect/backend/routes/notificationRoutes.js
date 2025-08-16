@@ -1,3 +1,4 @@
+// PetConnect/backend/routes/notificationRoutes.js
 const express = require('express');
 const router = express.Router();
 const notificationController = require('../controllers/notificationController');
@@ -13,7 +14,7 @@ router.put('/mark-read/:notificationId', notificationController.markNotification
 router.get('/debug/raw/:userId', async (req, res) => {
   try {
     const userId = req.params.userId;
-    const notifications = await Notification.find({ user: userId });
+    const notifications = await Notification.find({ userId: userId }).sort({ createdAt: -1 });
     console.log('Raw notifications for user:', notifications);
     res.status(200).json(notifications);
   } catch (err) {
