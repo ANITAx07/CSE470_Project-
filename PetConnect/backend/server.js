@@ -38,12 +38,12 @@ app.use('/api/donations', donationRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/notifications', notificationRoutes);
 
-// ===== Test Route =====
+// Test Route 
 app.get('/', (req, res) => {
   res.send('🐾 PetConnect API is alive!');
 });
 
-// ===== Start Server =====
+//Start Server 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 

@@ -28,9 +28,8 @@ router.post('/add', upload.single('image'), async (req, res) => {
   }
 });
 
-// ==============================
+
 // Get all pets
-// ==============================
 router.get('/', async (req, res) => {
   try {
     const pets = await Pet.find();
@@ -40,9 +39,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-// ==============================
-// Get single pet by ID ✅ [New]
-// ==============================
+
+// Get single pet by ID 
+
 router.get('/:id', async (req, res) => {
   try {
     const pet = await Pet.findById(req.params.id);
@@ -55,9 +54,8 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// ==============================
+
 // Get all pets for admin
-// ==============================
 router.get('/admin/all', async (req, res) => {
   try {
     const pets = await Pet.find().sort({ createdAt: -1 }); // latest first
@@ -67,9 +65,7 @@ router.get('/admin/all', async (req, res) => {
   }
 });
 
-// ==============================
 // Delete a pet
-// ==============================
 router.delete('/:id', async (req, res) => {
   try {
     await Pet.findByIdAndDelete(req.params.id);
@@ -79,9 +75,8 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// ==============================
+
 // Update a pet
-// ==============================
 router.put('/:id', async (req, res) => {
   try {
     const updatedPet = await Pet.findByIdAndUpdate(req.params.id, req.body, { new: true });

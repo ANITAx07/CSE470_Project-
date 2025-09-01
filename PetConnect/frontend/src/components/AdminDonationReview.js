@@ -14,22 +14,6 @@ const AdminDonationReview = () => {
     fetchDonations();
   }, []);
 
-  // const fetchDonations = async () => {
-  //   try {
-  //     const token = localStorage.getItem('token');
-  //     const response = await axios.get('http://localhost:5000/api/donations', {
-  //       headers: {
-  //         'Authorization': `Bearer ${token}`
-  //       }
-  //     });
-  //     setDonations(response.data);
-  //   } catch (error) {
-  //     console.error('Error fetching donations:', error);
-  //     setError(error.response?.data?.message || 'Failed to fetch donations');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const fetchDonations = async () => {
     try {
       const token = localStorage.getItem('token');

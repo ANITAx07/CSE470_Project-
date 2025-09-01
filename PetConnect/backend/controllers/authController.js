@@ -3,9 +3,9 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-// const nodemailer = require('nodemailer');
 
-// ===== Signup =====
+
+// Signup 
 const signup = async (req, res) => {
   const { name, email, password, role } = req.body;
 
@@ -38,7 +38,7 @@ const signup = async (req, res) => {
   }
 };
 
-// ===== Login =====
+// Login
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -77,7 +77,7 @@ const login = async (req, res) => {
   }
 };
 
-// ===== Forgot Password =====
+// Forgot Password
 const forgotPassword = async (req, res) => {
   const { email, captcha, newPassword } = req.body;
   try {
@@ -102,12 +102,12 @@ const forgotPassword = async (req, res) => {
   }
 };
 
-// ===== Reset Password =====
+// Reset Password 
 const resetPassword = async (req, res) => {
   res.status(404).json({ error: 'Not implemented' });
 };
 
-// ===== Get Profile =====
+// Get Profile
 const getProfile = async (req, res) => {
   const { userId } = req.query;
   try {
@@ -145,17 +145,48 @@ const updateProfile = async (req, res) => {
 
     res.json({ message: 'Profile updated', user: updatedUser });
   } catch (err) {
-    console.error('❌ Update failed:', err);
+    console.error('Update failed:', err);
     res.status(500).json({ error: 'Update failed', details: err.message });
   }
 };
 
-// ===== Admin Middleware =====
+// Admin Middleware 
+const fs = require('fs');
+const path = require('path');
+
 const isAdmin = (req, res, next) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Access denied: Admins only' });
   }
   next();
+};
+
+// Remove profile picture
+const removeProfilePicture = async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    if (!userId) return res.status(400).json({ error: 'User ID is required' });
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    if (user.avatar) {
+      const avatarPath = path.join(__dirname, '..', 'uploads', path.basename(user.avatar));
+      fs.unlink(avatarPath, (err) => {
+        if (err) {
+          console.error('Failed to delete avatar file:', err);
+        }
+      });
+    }
+
+    user.avatar = '';
+    await user.save();
+
+    res.json({ message: 'Profile picture removed', user });
+  } catch (err) {
+    console.error('Remove profile picture failed:', err);
+    res.status(500).json({ error: 'Failed to remove profile picture' });
+  }
 };
 
 module.exports = {
@@ -166,4 +197,7 @@ module.exports = {
   isAdmin,
   forgotPassword,
   resetPassword,
+  removeProfilePicture,
 };
+
+

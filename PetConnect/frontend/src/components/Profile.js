@@ -1,9 +1,10 @@
-// frontend/src/components/Profile.js
+// // // frontend/src/components/Profile.js
+
 import React, { useEffect, useState } from 'react';
 import './Profile.css';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faKey, faUser, faSignOutAlt, faSave, faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faKey, faUser, faSignOutAlt, faSave, faCamera, faTrash } from '@fortawesome/free-solid-svg-icons'; // ⬅️ ADDED faTrash
 
 export default function Profile() {
   const [user, setUser] = useState({
@@ -17,7 +18,6 @@ export default function Profile() {
 
   const userId = localStorage.getItem('userId');
 
-  // ✅ Load user profile on mount
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -47,6 +47,17 @@ export default function Profile() {
     if (selected) {
       setFile(selected);
       setPreview(URL.createObjectURL(selected));
+    }
+  };
+
+  const handleDeleteAvatar = async () => {
+    try {
+      const res = await axios.delete(`http://localhost:5000/api/auth/avatar?userId=${userId}`);
+      alert(res.data.message || 'Avatar deleted');
+      setPreview('/default-avatar.png');
+      localStorage.setItem('userAvatar', '/default-avatar.png');
+    } catch (err) {
+      alert('Failed to delete avatar');
     }
   };
 
@@ -83,19 +94,26 @@ export default function Profile() {
   return (
     <div className="profile-container">
       <div className="profile-avatar">
-        <label htmlFor="avatarUpload">
-          <div className="avatar-wrapper">
+        <div className="avatar-wrapper">
+          <label htmlFor="avatarUpload">
             <img src={preview} alt="Avatar" />
-            <span className="camera-icon"><FontAwesomeIcon icon={faCamera} /></span>
-          </div>
-        </label>
-        <input
-          type="file"
-          id="avatarUpload"
-          accept="image/*"
-          style={{ display: 'none' }}
-          onChange={handleImageChange}
-        />
+            <span className="camera-icon">
+              <FontAwesomeIcon icon={faCamera} />
+            </span>
+          </label>
+          {user.avatar && (
+          <span className="delete-icon" onClick={handleDeleteAvatar}>
+            <FontAwesomeIcon icon={faTrash} />
+          </span>
+          )}
+          <input
+            type="file"
+            id="avatarUpload"
+            accept="image/*"
+            style={{ display: 'none' }}
+            onChange={handleImageChange}
+          />
+        </div>
         <h2>{user.name}</h2>
       </div>
 

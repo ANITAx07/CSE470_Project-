@@ -22,6 +22,7 @@ import MyPosts from './components/MyPosts';
 import PostPage from './components/PostPage';
 import DonateItem from './components/DonateItem';
 import MyDonations from './components/MyDonations';
+import Contact from './components/Contact';
 
 function AppContent() {
   const location = useLocation();
@@ -38,12 +39,11 @@ function AppContent() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-      {/* Remove reset-password route */}
-      {/* <Route path="/reset-password/:token" element={<ResetPassword />} /> */}
-      <Route path="/notifications" element={<NotificationsPage />} />  {/* Added route */}
-      <Route path="/moments" element={<MomentsFeed />} />  {/* Added moments route */}
-      <Route path="/post/:postId" element={<PostPage />} /> {/* Added post detail route */}
-
+      <Route path="/notifications" element={<NotificationsPage />} /> 
+      <Route path="/moments" element={<MomentsFeed />} />  
+      <Route path="/post/:postId" element={<PostPage />} /> 
+      <Route path="/contact" element={<Contact />} /> 
+      
       {/* Protected Routes */}
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/admin/add-pet" element={<ProtectedRoute><AdminAddPet /></ProtectedRoute>} />
@@ -57,8 +57,7 @@ function AppContent() {
       <Route path="/dashboard/requests" element={<AdminAdoptionRequests />} />
       <Route path="/admin/adoption-requests" element={<ProtectedRoute><AdminAdoptionRequests /></ProtectedRoute>} />
       <Route path="/favorites" element={<ProtectedRoute><FavoritePage /></ProtectedRoute>} />
-      
-      {/* Catch-all route */}
+
 
     </Routes>
 

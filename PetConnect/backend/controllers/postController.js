@@ -1,3 +1,4 @@
+// controllers/postController.js
 const Post = require('../models/Post');
 const mongoose = require('mongoose');
 const Notification = require('../models/Notification');
@@ -60,7 +61,7 @@ exports.deletePost = async (req, res) => {
     if (!post) return res.status(404).json({ message: 'Post not found' });
     if (!post.user.equals(userId)) return res.status(403).json({ message: 'Unauthorized' });
 
-    await post.remove();
+    await post.deleteOne();
     res.json({ message: 'Post deleted' });
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete post', error });
@@ -170,6 +171,33 @@ exports.updatePost = async (req, res) => {
     res.json(post);
   } catch (error) {
     res.status(500).json({ message: 'Failed to update post', error });
+  }
+};
+
+// Delete a comment by commentId (only post owner can delete)
+exports.deleteComment = async (req, res) => {
+  try {
+    const { postId, commentId } = req.params;
+    const userId = req.user.userId;
+
+    const post = await Post.findById(postId);
+    if (!post) return res.status(404).json({ message: 'Post not found' });
+
+    if (!post.user.equals(userId)) {
+      return res.status(403).json({ message: 'Unauthorized to delete comment' });
+    }
+
+    const commentIndex = post.comments.findIndex(c => c._id.toString() === commentId);
+    if (commentIndex === -1) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+
+    post.comments.splice(commentIndex, 1);
+    await post.save();
+
+    res.json({ message: 'Comment deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to delete comment', error });
   }
 };
 

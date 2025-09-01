@@ -1,3 +1,4 @@
+// routes/postRoutes.js
 const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/postController');
@@ -30,5 +31,8 @@ router.post('/:id/comment', authMiddleware, postController.addComment);
 
 // Get a post by ID
 router.get('/:id', authMiddleware, postController.getPostById);
+
+// Delete a comment by commentId (only post owner can delete)
+router.delete('/:postId/comment/:commentId', authMiddleware, postController.deleteComment);
 
 module.exports = router;

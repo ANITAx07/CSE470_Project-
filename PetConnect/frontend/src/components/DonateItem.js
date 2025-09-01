@@ -42,10 +42,7 @@ const DonateItem = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e) => {
@@ -56,28 +53,19 @@ const DonateItem = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
-    // Log form data and photo
-    console.log('Form Data:', formData);
-    console.log('Photo:', photo);
     
     try {
       const token = localStorage.getItem('token');
-      console.log('Token retrieved:', token); // Log the token value
       if (!token) {
         navigate('/login');
         return;
       }
 
       const data = new FormData();
-      Object.keys(formData).forEach(key => {
-        data.append(key, formData[key]);
-      });
-      if (photo) {
-        data.append('photo', photo);
-      }
+      Object.keys(formData).forEach(key => data.append(key, formData[key]));
+      if (photo) data.append('photo', photo);
 
-      const response = await axios.post('http://localhost:5000/api/donations', data, {
+      await axios.post('http://localhost:5000/api/donations', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`
@@ -95,149 +83,129 @@ const DonateItem = () => {
   };
 
   return (
-    <div className="donate-item-container">
-      <div className="donate-item-form">
-        <h2>Donate an Item</h2>
-        <p>Help pets in need by donating items like food, toys, or medicine.</p>
-        
-        {error && <div className="error-message">{error}</div>}
-        
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="item">Item Name *</label>
-            <input
-              type="text"
-              id="item"
-              name="item"
-              value={formData.item}
-              onChange={handleChange}
-              required
-              placeholder="e.g., Dog Food, Cat Toy, Medicine"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="category">Category *</label>
-            <select
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select a category</option>
-              {categories.map(cat => (
-                <option key={cat.value} value={cat.value}>{cat.label}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="quantity">Quantity *</label>
-            <input
-              type="number"
-              id="quantity"
-              name="quantity"
-              value={formData.quantity}
-              onChange={handleChange}
-              required
-              min="1"
-              placeholder="e.g., 5"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="condition">Condition *</label>
-            <select
-              id="condition"
-              name="condition"
-              value={formData.condition}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select condition</option>
-              {conditions.map(cond => (
-                <option key={cond.value} value={cond.value}>{cond.label}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="photo">Photo (Optional)</label>
-            <input
-              type="file"
-              id="photo"
-              name="photo"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="pickupMethod">Pickup/Drop-off Method *</label>
-            <select
-              id="pickupMethod"
-              name="pickupMethod"
-              value={formData.pickupMethod}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select method</option>
-              {pickupMethods.map(method => (
-                <option key={method.value} value={method.value}>{method.label}</option>
-              ))}
-            </select>
-          </div>
-
-          {formData.pickupMethod === 'pickup' && (
+    <div className="donate-page-background">
+      <div className="donate-item-container">
+        <div className="donate-item-form">
+          <h2>🐾 Donate an Item</h2>
+          <p>Help pets in need by donating items like food, toys, or medicine.</p>
+          
+          {error && <div className="error-message">{error}</div>}
+          
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="pickupAddress">Pickup Address *</label>
+              <label htmlFor="item">Item Name *</label>
               <input
                 type="text"
-                id="pickupAddress"
-                name="pickupAddress"
-                value={formData.pickupAddress}
+                id="item"
+                name="item"
+                value={formData.item}
                 onChange={handleChange}
                 required
-                placeholder="Enter your address for pickup"
+                placeholder="e.g., Dog Food, Cat Toy, Medicine"
               />
             </div>
-          )}
 
-          {formData.pickupMethod === 'drop-off' && (
             <div className="form-group">
-              <label htmlFor="meetupLocation">Drop-off Location *</label>
+              <label htmlFor="category">Category *</label>
+              <select id="category" name="category" value={formData.category} onChange={handleChange} required>
+                <option value="">Select a category</option>
+                {categories.map(cat => (
+                  <option key={cat.value} value={cat.value}>{cat.label}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="quantity">Quantity *</label>
               <input
-                type="text"
-                id="meetupLocation"
-                name="meetupLocation"
-                value={formData.meetupLocation}
+                type="number"
+                id="quantity"
+                name="quantity"
+                value={formData.quantity}
                 onChange={handleChange}
                 required
-                placeholder="Enter drop-off location"
+                min="1"
+                placeholder="e.g., 5"
               />
             </div>
-          )}
 
-          <div className="form-group">
-            <label htmlFor="notes">Additional Notes (Optional)</label>
-            <textarea
-              id="notes"
-              name="notes"
-              value={formData.notes}
-              onChange={handleChange}
-              rows="3"
-              placeholder="e.g., For small breed dogs, expiration date, etc."
-            />
-          </div>
+            <div className="form-group">
+              <label htmlFor="condition">Condition *</label>
+              <select id="condition" name="condition" value={formData.condition} onChange={handleChange} required>
+                <option value="">Select condition</option>
+                {conditions.map(cond => (
+                  <option key={cond.value} value={cond.value}>{cond.label}</option>
+                ))}
+              </select>
+            </div>
 
-          <button type="submit" className="submit-btn" disabled={loading}>
-            {loading ? 'Submitting...' : 'Submit Donation'}
-          </button>
-        </form>
+            <div className="form-group">
+              <label htmlFor="photo">Photo (Optional)</label>
+              <input type="file" id="photo" name="photo" accept="image/*" onChange={handleFileChange} />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="pickupMethod">Pickup/Drop-off Method *</label>
+              <select id="pickupMethod" name="pickupMethod" value={formData.pickupMethod} onChange={handleChange} required>
+                <option value="">Select method</option>
+                {pickupMethods.map(method => (
+                  <option key={method.value} value={method.value}>{method.label}</option>
+                ))}
+              </select>
+            </div>
+
+            {formData.pickupMethod === 'pickup' && (
+              <div className="form-group">
+                <label htmlFor="pickupAddress">Pickup Address *</label>
+                <input
+                  type="text"
+                  id="pickupAddress"
+                  name="pickupAddress"
+                  value={formData.pickupAddress}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your address for pickup"
+                />
+              </div>
+            )}
+
+            {formData.pickupMethod === 'drop-off' && (
+              <div className="form-group">
+                <label htmlFor="meetupLocation">Drop-off Location *</label>
+                <input
+                  type="text"
+                  id="meetupLocation"
+                  name="meetupLocation"
+                  value={formData.meetupLocation}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter drop-off location"
+                />
+              </div>
+            )}
+
+            <div className="form-group">
+              <label htmlFor="notes">Additional Notes (Optional)</label>
+              <textarea
+                id="notes"
+                name="notes"
+                value={formData.notes}
+                onChange={handleChange}
+                rows="3"
+                placeholder="e.g., For small breed dogs, expiration date, etc."
+              />
+            </div>
+
+            <button type="submit" className="submit-btn" disabled={loading}>
+              {loading ? 'Submitting...' : 'Submit Donation'}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
 };
 
 export default DonateItem;
+
+

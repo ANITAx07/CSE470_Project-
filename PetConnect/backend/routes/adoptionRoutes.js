@@ -6,7 +6,7 @@ const Notification = require('../models/Notification');
 const Pet = require('../models/Pet');
 const User = require('../models/User');
 
-// ✅ 1. Submit an adoption request
+//  Submit an adoption request
 router.post('/request', async (req, res) => {
   const {
     userId,
@@ -61,7 +61,7 @@ router.post('/request', async (req, res) => {
   }
 });
 
-// ✅ 2. Get all adoption requests for a specific user
+//  Get all adoption requests for a specific user
 router.get('/my-requests/:userId', async (req, res) => {
   const { userId } = req.params;
 
@@ -76,8 +76,7 @@ router.get('/my-requests/:userId', async (req, res) => {
   }
 });
 
-// 3. Admin: Get all adoption requests
-
+//Admin: Get all adoption requests
 router.get('/admin/adoption-requests', async (req, res) => {
   try {
     const requests = await Adoption.find()
@@ -93,12 +92,6 @@ router.get('/admin/adoption-requests', async (req, res) => {
 });
 
 
-// ==============================
-
-// backend/routes/adoptionRoutes.js
-
-// backend/routes/adoptionRoutes.js
-// const Notification = require('../models/Notification');
 
 router.put('/admin/adoption-requests/:id/status', async (req, res) => {
     const { id } = req.params;
@@ -133,7 +126,7 @@ router.put('/admin/adoption-requests/:id/status', async (req, res) => {
 
 module.exports = router;
 
-// // ✅ 5. Update payment status after approval
+//  Update payment status after approval
 router.put('/pay/:requestId', async (req, res) => {
   const { requestId } = req.params;
   const { platformFeePaid, deliveryFeePaid } = req.body;
@@ -153,9 +146,9 @@ router.put('/pay/:requestId', async (req, res) => {
 });
 
 
-// backend/routes/adoptionRoutes.js
 
-// Admin: Get all completed adoption requests
+// Admin:
+// Get all completed adoption requests
 // Get completed adoptions
 router.get('/admin/adoption-history', async (req, res) => {
   try {

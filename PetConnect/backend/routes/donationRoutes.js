@@ -18,7 +18,7 @@ const {
 // None for now - all donation operations require authentication
 
 // Protected routes (require authentication)
-router.post('/', authMiddleware, upload.single('photo'), createDonation); // ✅ includes file upload
+router.post('/', authMiddleware, upload.single('photo'), createDonation); // file upload
 router.get('/my-donations', authMiddleware, getUserDonations);
 router.get('/:id', authMiddleware, getDonationById);
 

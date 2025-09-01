@@ -1,101 +1,129 @@
+/* Avatar Circle */
+.avatar-circle {
+  background-color: #ff9b72;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+/* Post Container */
+.post-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(255, 112, 77, 0.15);
+  padding: 18px 22px;
+  margin-bottom: 25px;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Post Header */
 .post-header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 10px;
 }
 
 .post-user-info {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.post-header strong {
-  font-weight: bold;
-  color: #d2691e; /* example color */
+  align-items: center;
+  gap: 12px;
 }
 
 .post-date {
   font-size: 0.85rem;
-  color: #a0522d; /* example color */
+  color: #8d5a4f;
 }
 
-.post-header button {
-  /* Remove align-self to allow flexbox alignment */
-  margin-top: 0;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease;
-}
-
-.edit-btn {
-  background-color: #f08080;
-  color: white;
-  margin-left: 550px;
-  
-}
-
-.delete-btn {
-  background-color: #dc143c;
-  color: white;
-}
-
-.save-btn {
-  background-color: #4caf50;
-  color: white;
-  margin-left: 550px;
-  
-}
-
-.cancel-btn {
-  background-color: #f44336;
-  color: white;
-}
-
-.post-content {
-  margin-bottom: 10px;
-}
-
-.post-photo {
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
-}
-
-/* New styles to fix like and comment button overlap */
-.post-actions {
+/* Buttons */
+.post-actions,
+.post-actions-right {
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
 
-.like-btn,
-.comment-toggle-btn {
+.post-actions-right button,
+.post-actions button {
   padding: 6px 12px;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 6px;
   font-size: 0.9rem;
-  background-color: #f08080;
-  color: white;  
-  transition: background-color 0.3s ease;
-
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+.edit-btn { background-color: #ffa07a; color: white; }
+.delete-btn { background-color: #ff5c5c; color: white; }
+.save-btn { background-color: #4caf50; color: white; }
+.cancel-btn { background-color: #f44336; color: white; }
+.like-btn, .comment-toggle-btn {
+  background-color: #f08080;
+  color: white;
+}
 .like-btn.liked {
   background-color: #dc143c;
-  
 }
-
 .like-btn:hover,
-.comment-toggle-btn:hover {
-  background-color: #ff69b4;
-  background-color: #d2691e;
-
+.comment-toggle-btn:hover,
+.post-actions-right button:hover {
+  transform: scale(1.05);
 }
+
+/* Post Content */
+.post-content p {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.post-photo {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* Comments */
+.comments-section {
+  margin-top: 15px;
+}
+.comment {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: #ffeae4;
+  border-radius: 10px;
+  margin-top: 6px;
+}
+.add-comment {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.add-comment input {
+  flex-grow: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.add-comment button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: #f08080;
+  color: white;
+  border: none;
+}
+.add-comment button:hover {
+  background-color: #d2691e;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

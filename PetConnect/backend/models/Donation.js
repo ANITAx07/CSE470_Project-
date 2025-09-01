@@ -4,31 +4,15 @@ const mongoose = require('mongoose');
 const donationSchema = new mongoose.Schema({
   item: String,
   quantity: Number,
-  category: {
-    type: String,
-    enum: ['food', 'toy', 'medicine', 'clothing', 'accessories', 'bedding', 'other'],
-    required: true
-  },
-  condition: {
-    type: String,
-    enum: ['new', 'used'],
-    required: true
-  },
+  category: {type: String, enum: ['food', 'toy', 'medicine', 'clothing', 'accessories', 'bedding', 'other'], required: true},
+  condition: {type: String, enum: ['new', 'used'], required: true},
   photo: String,
-  pickupMethod: {
-    type: String,
-    enum: ['pickup', 'drop-off'],
-    required: true
-  },
+  pickupMethod: {type: String, enum: ['pickup', 'drop-off'], required: true},
   pickupAddress: String,
   meetupLocation: String,
   notes: String,
   donor: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  status: { 
-    type: String, 
-    enum: ['pending', 'approved', 'rejected', 'completed'], 
-    default: 'pending' 
-  },
+  status: {type: String, enum: ['pending', 'approved', 'rejected', 'completed'], default: 'pending'},
   adminNotes: String,
   reviewedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   reviewedAt: Date,

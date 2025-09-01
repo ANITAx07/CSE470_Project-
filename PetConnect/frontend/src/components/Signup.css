@@ -1,66 +1,107 @@
 .signup-page {
+  position: relative;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #fbeeed;
+  overflow: hidden;
 }
 
+/* FLOATING SHAPES */
+.signup-page::before,
+.signup-page::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at center, #ffb199, #ffecd2);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: float 10s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.signup-page::before {
+  top: -100px;
+  left: -120px;
+}
+
+.signup-page::after {
+  bottom: -100px;
+  right: -120px;
+  background: radial-gradient(circle at center, #ffd6e0, #f9c4d2);
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(30px) scale(1.1);
+  }
+}
+
+/* FORM */
 .signup-form {
+  position: relative;
+  z-index: 2;
   background: #fff;
   padding: 2.5rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 24px #eedad8;
+  border-radius: 15px;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
   min-width: 340px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  text-align: center;
 }
 
 .signup-form h2 {
-  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
   color: #d26944;
-  margin-bottom: 15px;
-  letter-spacing: 1px;
 }
 
-.signup-form label {
-  font-weight: 500;
-  color: #3a1d0c;
+.signup-form .subtext {
+  font-size: 0.9rem;
+  color: #5b3a2b;
+  margin-bottom: 15px;
 }
 
 .signup-form input {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ffd9c0;
-  border-radius: 7px;
-  outline: none;
+  border-radius: 8px;
   font-size: 1rem;
-  margin-bottom: 2px;
+  outline: none;
 }
 
 .signup-form button {
-  margin-top: 10px;
   background: #d26944;
-  color: #fff;
-  border: none;
-  border-radius: 7px;
-  padding: 10px;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
   font-size: 1rem;
-  font-weight: 600;
+  border: none;
   cursor: pointer;
-  transition: background 0.17s;
+  transition: background 0.2s ease;
 }
 
 .signup-form button:hover {
-  background: #ae4b21;
+  background: #b4532e;
 }
 
 .signup-link {
-  text-align: center;
+  font-size: 0.9rem;
   margin-top: 14px;
-  font-size: 0.98rem;
 }
+
 .signup-link a {
   color: #d26944;
+  font-weight: 500;
   text-decoration: underline;
 }
+

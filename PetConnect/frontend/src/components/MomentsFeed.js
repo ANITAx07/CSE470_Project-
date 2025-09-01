@@ -1,3 +1,4 @@
+// //MomentsFeed.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Post from './Post';
@@ -25,16 +26,18 @@ const MomentsFeed = () => {
     fetchPosts();
   }, []);
 
-  if (loading) return <div>Loading moments...</div>;
+  if (loading) return <div className="loading-text">Loading pet moments...</div>;
 
   return (
     <div className="moments-feed-container">
-      <h2>Pet Moments</h2>
+      <h2>🐾 Pet Moments</h2>
       {posts.length === 0 ? (
-        <p>No moments posted yet. Be the first to share!</p>
+        <p className="no-posts">No moments posted yet. Be the first to share!</p>
       ) : (
         posts.map(post => (
-          <Post key={post._id} post={post} refreshPosts={fetchPosts} />
+          <div className="moment-card" key={post._id}>
+            <Post post={post} refreshPosts={fetchPosts} />
+          </div>
         ))
       )}
     </div>
@@ -42,3 +45,4 @@ const MomentsFeed = () => {
 };
 
 export default MomentsFeed;
+

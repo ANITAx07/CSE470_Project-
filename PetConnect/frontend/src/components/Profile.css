@@ -1,22 +1,40 @@
+/* Container */
 .profile-container {
   max-width: 650px;
   margin: 40px auto;
   padding: 30px;
-  background: #fff7f4;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(145deg, #fff0eb, #ffe3db);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, sans-serif;
-  position: relative;
+  animation: fadeIn 0.8s ease-in-out;
+  text-align: center;
 }
 
+/* Fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Avatar section */
 .profile-avatar {
   text-align: center;
   margin-bottom: 30px;
+  animation: popIn 0.6s ease-in;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .avatar-wrapper {
   position: relative;
   display: inline-block;
+  box-shadow: 0 0 0 4px #f4c1a1, 0 0 10px #f89b75;
+  border-radius: 50%;
+  transition: transform 0.3s;
 }
 
 .profile-avatar img {
@@ -25,7 +43,6 @@
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #e9724c;
-  transition: transform 0.3s;
 }
 
 .camera-icon {
@@ -37,15 +54,46 @@
   padding: 6px;
   border-radius: 50%;
   font-size: 14px;
-  cursor: pointer;
   border: 2px solid white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
+
+.delete-icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #dc3545;
+  color: white;
+  padding: 6px;
+  border-radius: 50%;
+  font-size: 14px;
+  border: 2px solid white;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.delete-icon:hover {
+  transform: scale(1.1);
+  background-color: #b02a37;
+}
+
+
+
+
 
 .profile-avatar h2 {
   font-size: 22px;
   color: #e9724c;
   margin-top: 15px;
+}
+
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-form label {
@@ -54,24 +102,33 @@
   font-weight: 600;
   color: #444;
   font-size: 14px;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+  max-width: 420px;
 }
 
 .profile-form input {
   width: 100%;
+  max-width: 420px;
   padding: 12px 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .profile-form input:focus {
   border-color: #e9724c;
-  box-shadow: 0 0 5px rgba(233, 114, 76, 0.3);
+  box-shadow: 0 0 8px rgba(233, 114, 76, 0.4);
 }
 
+/* Buttons section */
 .profile-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
   margin-top: 25px;
 }
 
@@ -87,33 +144,65 @@
   transition: all 0.3s ease-in-out;
 }
 
-.profile-buttons .update-btn {
+/* Update */
+.update-btn {
   background-color: #e9724c;
   color: #fff;
+  animation: pulse 2s infinite;
 }
 
-.profile-buttons .update-btn:hover {
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(233, 114, 76, 0.5); }
+  50% { box-shadow: 0 0 10px 10px rgba(233, 114, 76, 0); }
+}
+
+.update-btn:hover {
   background-color: #c95636;
 }
 
-.profile-buttons .logout-btn {
+/* Logout */
+.logout-btn {
   background-color: #444;
   color: #fff;
 }
 
-.profile-buttons .logout-btn:hover {
+.logout-btn:hover {
   background-color: #000;
 }
-.profile-avatar {
+
+
+
+
+
+/* NEW */
+.avatar-icons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-  text-align: center;
+  gap: 8px;
 }
 
-.profile-avatar h2 {
-  margin-top: 0.5rem;
-  color: #d16636;
-  font-size: 24px;
+.delete-avatar-btn {
+  background: #fff;
+  border: 2px solid #e9724c;
+  color: #e9724c;
+  padding: 5px 7px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 13px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: background 0.2s ease;
+}
+
+.delete-avatar-btn:hover {
+  background: #ffe3db;
+}
+.delete-avatar-btn:disabled {
+  border-color: #ccc;
+  color: #ccc;
+  cursor: not-allowed;
+}
+.delete-avatar-btn:disabled:hover {
+  background: #fff;
 }

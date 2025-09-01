@@ -1,12 +1,51 @@
-.login-page {
+.auth-page {
+  position: relative;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #fbeeed;
+  overflow: hidden;
 }
 
-.login-form {
+/* --- FLOATING SHAPES --- */
+.auth-page::before,
+.auth-page::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at center, #ffb199, #ffecd2);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: float 10s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.auth-page::before {
+  top: -100px;
+  left: -120px;
+}
+
+.auth-page::after {
+  bottom: -100px;
+  right: -120px;
+  background: radial-gradient(circle at center, #ffd6e0, #f9c4d2);
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(30px) scale(1.1);
+  }
+}
+
+.auth-form {
+  position: relative;
+  z-index: 1;
   background: #fff;
   padding: 2.5rem 2rem;
   border-radius: 12px;
@@ -17,29 +56,39 @@
   gap: 15px;
 }
 
-.login-form h2 {
+.auth-title {
   text-align: center;
   color: #d26944;
-  margin-bottom: 15px;
-  letter-spacing: 1px;
+  margin-bottom: 5px;
+  font-size: 1.6rem;
 }
 
-.login-form label {
+.auth-subtitle {
+  text-align: center;
+  color: #7c4b36;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.auth-icon {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.auth-form label {
   font-weight: 500;
   color: #3a1d0c;
 }
 
-.login-form input {
+.auth-form input {
   padding: 10px;
   border: 1px solid #ffd9c0;
   border-radius: 7px;
   outline: none;
   font-size: 1rem;
-  margin-bottom: 2px;
 }
 
-.login-form button {
-  margin-top: 10px;
+.auth-form button {
   background: #d26944;
   color: #fff;
   border: none;
@@ -51,16 +100,26 @@
   transition: background 0.17s;
 }
 
-.login-form button:hover {
+.auth-form button:hover {
   background: #ae4b21;
+}
+
+.forgot-password-link {
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.forgot-password-link a {
+  color: #d26944;
+  text-decoration: underline;
 }
 
 .login-link {
   text-align: center;
-  margin-top: 14px;
-  font-size: 0.98rem;
+  font-size: 0.9rem;
 }
 .login-link a {
   color: #d26944;
   text-decoration: underline;
 }
+

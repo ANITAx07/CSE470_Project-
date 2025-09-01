@@ -3,36 +3,13 @@
 const mongoose = require('mongoose');
 
 const notificationSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  message: {
-    type: String,
-    required: true
-  },
-  type: {
-    type: String, // Examples: "donation_approved", "adoption_request", "general"
-    required: true
-  },
-  relatedId: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: false // e.g., donationId, adoptionId, etc.
-  },
-  postId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Post',
-    required: false
-  },
-  read: {
-    type: Boolean,
-    default: false
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
+  message: {type: String, required: true},
+  type: {type: String, required: true},
+  relatedId: {type: mongoose.Schema.Types.ObjectId, required: false },
+  postId: {type: mongoose.Schema.Types.ObjectId, ref: 'Post', required: false},
+  read: {type: Boolean, default: false},
+  createdAt: {type: Date, default: Date.now}
 });
 
 module.exports = mongoose.model('Notification', notificationSchema);

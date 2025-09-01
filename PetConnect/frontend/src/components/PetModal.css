@@ -1,13 +1,11 @@
-/* PetModal.css */
-
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(101, 26, 7, 0.653);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,121 +14,102 @@
   overflow-y: auto;
 }
 
-
-.pet-modal {
-  background: #321303;
-    color: #d0c3bf;
-  padding: 32px;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 18px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+.modal-box {
+  background: #fffaf6;
+  color: #2d1f17;
+  padding: 24px;
+  width: 95%;
+  max-width: 720px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   position: relative;
+  display: flex;
+  flex-direction: column;
   font-family: 'Poppins', sans-serif;
   animation: fadeIn 0.3s ease;
-  color: #d0c3bf;
-    display: flex;
-    flex-direction: column;
 }
 
-.pet-modal h2 {
-  color: #000000; /* Light Salmon */
-  font-size: 1.9rem;
-  margin-bottom: 12px;
-  text-align: center;
-  font-weight: 600;
-}
-.modal-content {
-  flex: 1;
-    padding: 16px;
-    border-radius: 12px;
-  overflow-y: auto;
-  color: #000000;
-  max-height: 600px; /* Limit height for scrolling */
-
-}
-
-.pet-modal img {
+.modal-image-container {
   width: 100%;
-  max-height: 300px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-image {
+  width: 100%;
+  max-height: 320px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 18px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: 2px solid #e3b7a6;
-    transition: transform 0.2s ease;
-
-
+  border-radius: 16px;
+  border: 3px solid #ffc8b2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.pet-modal p {
-  font-size: 1.05rem;
+.modal-content {
+  background: #fff3ec;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
   color: #352116;
+}
+
+.modal-content h2 {
+  text-align: center;
+  color: #d77b5b;
+  font-family: 'Pacifico', cursive;
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.modal-content p {
+  font-size: 1.05rem;
   margin: 6px 0;
-    line-height: 1.6;
-    text-align: justify;
-
-
-}
-
-.pet-modal .btn-group {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.pet-modal button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 22px;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  transition: background 0.2s ease;
-  color: #fff;
-  background: #d77b5b;
-
-
+  line-height: 1.6;
+  text-align: justify;
 }
 
 .adopt-btn {
-  background: #d77b5b;
+  background: #ff8c66;
   color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 22px;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 28px;
+  margin-top: 20px;
+  width: fit-content;
+  align-self: center;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: background 0.2s ease;
 }
 
 .adopt-btn:hover {
-  background: #b45a3c;
+  background: #e56d4a;
 }
 
 .close-btn {
-    position: relative;
-    
-  background: #f1f1f1;
-  color: #444;
-
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #b33636;
+  border: none;
+  font-size: 1.3rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 .close-btn:hover {
-  background: #ddd;
+  background: #da0202;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(-15px);
-
   }
   to {
     opacity: 1;
     transform: translateY(0);
-
   }
-  }
+}

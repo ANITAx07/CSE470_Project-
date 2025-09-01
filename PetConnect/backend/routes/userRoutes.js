@@ -1,7 +1,6 @@
-// PetConnect - User Routes for Managing Favorites
-// This file handles user-related operations such as adding/removing pets to/from favorites
+
+// user-related operations such as adding/removing pets to/from favorites
 // and retrieving a user's favorite pets.
-// This code is part of the PetConnect backend application.
 // userRoutes.js
 const express = require('express');
 const User = require('../models/User');
@@ -67,7 +66,4 @@ router.put('/remove-favorite/:userId', async (req, res) => {
   }
 });
 
-
-
-
-module.exports = router;  // Ensure this is properly exported
+module.exports = router;  

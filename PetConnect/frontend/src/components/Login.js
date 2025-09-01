@@ -1,3 +1,5 @@
+// // frontend/src/components/Login.js
+// frontend/src/components/Login.js
 import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
@@ -14,20 +16,15 @@ export default function Login() {
         password
       });
 
-      const { message, user } = res.data;
+      const { message, user, token } = res.data;
 
       if (!user || !user.role) {
         alert('Login failed: No role found.');
         return;
       }
 
-      // Save token
-      const { token } = res.data;
-      if (token) {
-        localStorage.setItem('token', token);
-      }
-
-      // ✅ Save user info
+      // Store token and user info
+      if (token) localStorage.setItem('token', token);
       localStorage.setItem('userId', user.userId);
       localStorage.setItem('userRole', user.role);
       localStorage.setItem('userName', user.name);
@@ -36,22 +33,19 @@ export default function Login() {
       }
 
       alert(`${message} (Role: ${user.role})`);
-
-      // ✅ Redirect based on role
-      if (user.role === 'admin') {
-        window.location.href = '/dashboard';
-      } else {
-        window.location.href = '/profile';
-      }
+      window.location.href = user.role === 'admin' ? '/dashboard' : '/profile';
     } catch (err) {
       alert(err.response?.data?.error || 'Login failed');
     }
   };
 
   return (
-    <div className="login-page">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+    <div className="auth-page">
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <div className="auth-icon">🐾</div>
+        <h2 className="auth-title">Welcome Back</h2>
+        <p className="auth-subtitle">Let's fetch some joy again!</p>
+
         <label>Email</label>
         <input
           type="email"
@@ -68,13 +62,14 @@ export default function Login() {
           onChange={e => setPassword(e.target.value)}
         />
 
-        <div className="forgot-password-link" style={{ marginBottom: '10px' }}>
+        <div className="forgot-password-link">
           <a href="/forgot-password">Forgot Password?</a>
         </div>
 
         <button type="submit">Login</button>
+
         <div className="login-link">
-          Don&apos;t have an account? <a href="/signup">Sign up</a>
+          Don’t have an account? <a href="/signup">Sign up</a>
         </div>
       </form>
     </div>
