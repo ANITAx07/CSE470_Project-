@@ -10,7 +10,7 @@ export default function AdoptPage() {
   const [selectedPet, setSelectedPet] = useState(null); 
   const [searchTerm, setSearchTerm] = useState(''); 
   const [favorites, setFavorites] = useState([]); // To store favorite pets
-
+//
   useEffect(() => {
     fetchPets();
     fetchFavorites(); // Fetch favorite pets on page load
@@ -131,7 +131,7 @@ export default function AdoptPage() {
     <div className="adopt-page">
       <h2>Available Pets for Adoption</h2>
 
-      {/* 🔍 Search Bar */}
+      {/* Search Bar */}
       <div className="search-bar">
         <input
           type="text"

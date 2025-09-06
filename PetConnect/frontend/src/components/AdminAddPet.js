@@ -1,7 +1,7 @@
 // frontend/src/components/AdminAddPet.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import './AdminAddPet.css'; // Style file (optional)
+import './AdminAddPet.css';
 
 export default function AdminAddPet() {
   const [form, setForm] = useState({
@@ -28,7 +28,7 @@ export default function AdminAddPet() {
 
     if (!file) return alert('Please select an image!');
 
-    // Format age string like "3 years 2 months"
+    // Format age 
     const formattedAge = `${ageYears ? `${ageYears} year${ageYears > 1 ? 's' : ''}` : ''}${ageYears && ageMonths ? ' ' : ''}${ageMonths ? `${ageMonths} month${ageMonths > 1 ? 's' : ''}` : ''}`;
 
     const formData = new FormData();

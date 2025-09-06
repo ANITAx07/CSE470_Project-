@@ -89,10 +89,6 @@ export default function MyAdoptions() {
     doc.setTextColor('#555');
     doc.text('I PROMISE TO LOVE & CARE FOR YOU, ALWAYS.', doc.internal.pageSize.width / 2, 360, { align: 'center' });
 
-    // Website name at bottom center
-    // doc.setFontSize(14);
-    // doc.setTextColor('#d2691e');
-    // doc.text('PetConnect', doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 30, { align: 'center' });
 
     // Save PDF
     doc.save(`Adoption_Certificate_${request.petId?.name || 'Pet'}.pdf`);
